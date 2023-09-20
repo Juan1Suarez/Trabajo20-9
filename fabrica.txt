@@ -1,0 +1,11 @@
+En este ejercicio, crearás una fábrica de 
+vehículos que permite crear diferentes tipos de 
+vehículos, como autos y camionetas. Todos los 
+vehículos deben imprimir su marca modelo y 
+detalles como cantidad de asientos y capacidad 
+de carga.
+En este caso, el programa requiere que la 
+creación del objeto Vehículo (que puede ser 
+Auto o Camioneta) sea determinado por un 
+parámetro en el constructor y se muestren los 
+detalles en consola.

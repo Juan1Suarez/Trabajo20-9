@@ -1,71 +1,96 @@
-interface transaccion{
-    ingresodefondos(ingreso: number);
-    retirodefondos(retiro: number);
+interface monedaAdapter {
+    cambioDolar(amount: number): number;
+}
+
+class pesoAdapter implements monedaAdapter {
+    cambioDolar(pesos: number): number {
+        return pesos * 0.0029 //conversión a 349
     }
+}
 
-
-    class transEuro {
-        constructor() {
-    
-        }
-        euroadolar(euro:number) {
-    let eu =euro * 1.07
-    return eu
-    
-        }
+class euroAdapter implements monedaAdapter {
+    cambioDolar(euros: number): number {
+        return euros * 1.07
     }
-    
-    class transPeso {
-        constructor() {
+}
 
-        }
-        pesoadolar(peso:number) {
-    let pe =peso * 0.0029
-    return pe
-        }
-    }
-
-
-
-
-
-
-class cuenta implements transaccion {
-    protected nombre: string;
+class cuenta {
     protected id: number;
-    protected balance: number;
+    protected nombre: string;
+    protected transacciones: transaccion[];
 
     constructor(nombre: string, id: number) {
         this.nombre = nombre;
-        this.id = id;
-        this.balance = 0;
+          this.id = id;
+        this.transacciones = [];
     }
-    ingresodefondos(ingreso: number) {
-        if (ingreso > 0) {
-            this.balance += ingreso;
-        } else {
-            console.log("Transacción invalida, ingrese una cantidad positiva diferente a 0")
-        }
 
+    agregarTransaccion(transaccion: transaccion) {
+        this.transacciones.push(transaccion);
     }
-    retirodefondos(retiro: number) {
-        if (retiro > 0 && this.balance >= retiro) {
-            this.balance -= retiro;
-        } else { console.log("Cantidad invalida") }
+
+    obtenerSaldo(): number {
+        let saldo = 0;
+        for (const transaccion of this.transacciones) {
+            if (transaccion.getMoneda() === "pesos") {
+                saldo += pesosAdapter.cambioDolar(transaccion.getCantidad());
+                console.log ("cambio de balance de ", transaccion, "convertido en dolares", pesosAdapter.cambioDolar(transaccion.getCantidad()))
+            } else if (transaccion.getMoneda() === "euros") {
+                saldo += eurosAdapter.cambioDolar(transaccion.getCantidad());
+                console.log ("cambio de balance de ",transaccion, "convertido en dolares", eurosAdapter.cambioDolar(transaccion.getCantidad()))
+            } else if (transaccion.getMoneda()==="dolares"){
+                saldo+=transaccion.getCantidad()
+                console.log ("cambio de balance de ", transaccion)
+            }
+        }
+        return saldo;
+    }
+}
+
+class transaccion {
+    protected cantidad:number;
+    protected moneda:string
+    constructor( cantidad: number,  moneda: string) {
+        this.cantidad=cantidad;
+        this.moneda=moneda;
+    }   
+    getCantidad(): number {
+        return this.cantidad;
+    }
+
+    getMoneda(): string {
+        return this.moneda;
     }
 }
 
 
+let cuenta1 = new cuenta("Juan Suarez", 203203);
+let cuenta2 = new cuenta("Edwin Mostajo", 352325)
 
-let cuenta1 = new cuenta("Eustaquio", 2459855)
+
+let pesosAdapter = new pesoAdapter();
+let eurosAdapter = new euroAdapter();
 
 
-cuenta1.ingresodefondos(600);
-cuenta1.retirodefondos(500);
-console.log(cuenta1);
+let transaccion1c1 = new transaccion(10000, "pesos");
+let transaccion2c1 = new transaccion(40, "euros");
+let transaccion3c1 = new transaccion(-60, "dolares");
 
-let prueba=new transEuro()
-prueba.euroadolar(1)
+console.log (cuenta1);
+cuenta1.agregarTransaccion(transaccion1c1);
+cuenta1.agregarTransaccion(transaccion2c1);
+cuenta1.agregarTransaccion(transaccion3c1);
+console.log("Con un balance actual de ",cuenta1.obtenerSaldo(),"dolares" );
 
-let prueba2= new transPeso()
-prueba2.pesoadolar(349)
+console.log("------------------------------------------------------------")
+
+
+let transaccion1c2 = new transaccion(5000, "pesos");
+let transaccion2c2 = new transaccion(-80, "euros");
+let transaccion3c2 = new transaccion(-20, "dolares");
+
+console.log(cuenta2);
+cuenta2.agregarTransaccion(transaccion1c2);
+cuenta2.agregarTransaccion(transaccion2c2);
+cuenta2.agregarTransaccion(transaccion3c2);
+console.log("Con un balance actual de ",cuenta2.obtenerSaldo(),"dolares" );
