@@ -25,8 +25,8 @@ var cuenta = /** @class */ (function () {
     };
     cuenta.prototype.obtenerSaldo = function () {
         var saldo = 0;
-        for (var _i = 0, _a = this.transacciones; _i < _a.length; _i++) {
-            var transaccion_1 = _a[_i];
+        for (var i = 0; i < this.transacciones.length; i++) {
+            var transaccion_1 = this.transacciones[i];
             if (transaccion_1.getMoneda() === "pesos") {
                 saldo += pesosAdapter.cambioDolar(transaccion_1.getCantidad());
                 console.log("cambio de balance de ", transaccion_1, "convertido en dolares", pesosAdapter.cambioDolar(transaccion_1.getCantidad()));
@@ -61,18 +61,18 @@ var cuenta1 = new cuenta("Juan Suarez", 203203);
 var cuenta2 = new cuenta("Edwin Mostajo", 352325);
 var pesosAdapter = new pesoAdapter();
 var eurosAdapter = new euroAdapter();
-var transaccion1c1 = new transaccion(10000, "pesos");
-var transaccion2c1 = new transaccion(40, "euros");
-var transaccion3c1 = new transaccion(-60, "dolares");
+var transaccion1c1 = new transaccion(777777, "pesos");
+var transaccion2c1 = new transaccion(22, "euros");
+var transaccion3c1 = new transaccion(-58, "dolares");
 console.log(cuenta1);
 cuenta1.agregarTransaccion(transaccion1c1);
 cuenta1.agregarTransaccion(transaccion2c1);
 cuenta1.agregarTransaccion(transaccion3c1);
 console.log("Con un balance actual de ", cuenta1.obtenerSaldo(), "dolares");
 console.log("------------------------------------------------------------");
-var transaccion1c2 = new transaccion(5000, "pesos");
-var transaccion2c2 = new transaccion(-80, "euros");
-var transaccion3c2 = new transaccion(-20, "dolares");
+var transaccion1c2 = new transaccion(-700, "pesos");
+var transaccion2c2 = new transaccion(6, "euros");
+var transaccion3c2 = new transaccion(-15, "dolares");
 console.log(cuenta2);
 cuenta2.agregarTransaccion(transaccion1c2);
 cuenta2.agregarTransaccion(transaccion2c2);

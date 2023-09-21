@@ -90,38 +90,46 @@ let cafetera11= new cafeteraconx(700)
 
 cafetera1.llenarcafetera(true);
 console.log(cafetera1);
+console.log("--------------------------------------------------------------------");
 
 cafetera2.llenarcafetera(false);
 console.log(cafetera2);
+console.log("--------------------------------------------------------------------");
 
 cafetera3.vaciarcafetera(false);
 console.log(cafetera3);
-
+console.log("--------------------------------------------------------------------");
 
 cafetera4.vaciarcafetera(true);
 console.log(cafetera4);
-
+console.log("--------------------------------------------------------------------");
 
 cafetera5.llenarcafetera(false);
 cafetera5.checkcantidad();
 console.log(cafetera5);
+console.log("--------------------------------------------------------------------");
 
 cafetera6.vaciarcafetera(false);
 cafetera6.checkcantidad();
 console.log(cafetera6);
+console.log("--------------------------------------------------------------------");
 
 cafetera7.llenarcafetera(true);
 cafetera7.checkcantidad();
 console.log(cafetera7);
+console.log("--------------------------------------------------------------------");
 
 cafetera8.servirtaza(200);
 console.log(cafetera8)
+console.log("--------------------------------------------------------------------");
 
 cafetera9.servirtaza(2);
 console.log(cafetera9);
+console.log("--------------------------------------------------------------------");
 
 cafetera10.agregarcafe(10000);
 console.log(cafetera10);
+console.log("--------------------------------------------------------------------");
 
 cafetera11.agregarcafe(200);
 console.log(cafetera11);

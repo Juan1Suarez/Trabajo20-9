@@ -31,7 +31,8 @@ class cuenta {
 
     obtenerSaldo(): number {
         let saldo = 0;
-        for (const transaccion of this.transacciones) {
+        for (let i = 0; i < this.transacciones.length; i++) {
+            const transaccion = this.transacciones[i];
             if (transaccion.getMoneda() === "pesos") {
                 saldo += pesosAdapter.cambioDolar(transaccion.getCantidad());
                 console.log ("cambio de balance de ", transaccion, "convertido en dolares", pesosAdapter.cambioDolar(transaccion.getCantidad()))
@@ -72,9 +73,9 @@ let pesosAdapter = new pesoAdapter();
 let eurosAdapter = new euroAdapter();
 
 
-let transaccion1c1 = new transaccion(10000, "pesos");
-let transaccion2c1 = new transaccion(40, "euros");
-let transaccion3c1 = new transaccion(-60, "dolares");
+let transaccion1c1 = new transaccion(777777, "pesos");
+let transaccion2c1 = new transaccion(22, "euros");
+let transaccion3c1 = new transaccion(-58, "dolares");
 
 console.log (cuenta1);
 cuenta1.agregarTransaccion(transaccion1c1);
@@ -85,9 +86,9 @@ console.log("Con un balance actual de ",cuenta1.obtenerSaldo(),"dolares" );
 console.log("------------------------------------------------------------")
 
 
-let transaccion1c2 = new transaccion(5000, "pesos");
-let transaccion2c2 = new transaccion(-80, "euros");
-let transaccion3c2 = new transaccion(-20, "dolares");
+let transaccion1c2 = new transaccion(-700, "pesos");
+let transaccion2c2 = new transaccion(6, "euros");
+let transaccion3c2 = new transaccion(-15, "dolares");
 
 console.log(cuenta2);
 cuenta2.agregarTransaccion(transaccion1c2);

@@ -105,7 +105,7 @@ perrito.moverse(6);
 perrito.hacersonido("woof woof");
 perrito.saludar();
 perrito.buscarjuguete(2);
-
+console.log("------------------------------------------------------------------------------------");
 let gatito = new gato("edwin", 2, "Persa");
 console.log(gatito);
 gatito.moverse(30)
@@ -113,8 +113,7 @@ gatito.hacersonido("miau");
 gatito.colordelgato(2);
 gatito.jugarconjuguete(2);
 gatito.estadurmiendo(false);
-
-
+console.log("------------------------------------------------------------------------------------");
 let pajarito = new pájaro("anastacia", 16, "Chaja");
 console.log(pajarito);
 pajarito.moverse(600);
